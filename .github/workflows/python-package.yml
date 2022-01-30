@@ -27,4 +27,4 @@ jobs:
       run: |
         ls -al
         if [ -f out.txt ]; then cat out.txt; fi
-        echo "in out.txt: $GITHUB_JOB" > out.txt
+        echo "in out.txt: $GITHUB_RUN_ID $GITHUB_RUN_NUMBER" > out.txt
