@@ -21,10 +21,10 @@ jobs:
     - uses: actions/cache@v2
       name: Cache cachetest dir
       with:
-        path: out.txt
-        key: ${{ matrix.python-version }}-outtxt
+        path: .out.txt
+        key: ${{ matrix.python-version }}-dotouttxt
     - name: create file in subdir
       run: |
         ls -al
-        if [ -f out.txt ]; then cat out.txt; fi
-        echo "in out.txt: $GITHUB_RUN_ID $GITHUB_RUN_NUMBER" > out.txt
+        if [ -f .out.txt ]; then cat .out.txt; fi
+        echo "in out.txt: $GITHUB_RUN_ID $GITHUB_RUN_NUMBER" > .out.txt
