@@ -27,27 +27,34 @@ jobs:
       name: Cache testmondata1
       with:
         path: ~/.testmondata
-        key: ${{ matrix.python-version }}
+        key: ${{ matrix.python-version }}1
     - uses: actions/cache@v2
       name: Cache testmondata2
       with:
-        path: /home/runner/work/testfork/testfork/.testmondata
-        key: ${{ matrix.python-version }}
+        path: cachetest
+        key: ${{ matrix.python-version }}-cachetestdir
     - uses: actions/cache@v2
       name: Cache testmondata3
       with:
         path: .testmondata
-        key: ${{ matrix.python-version }}
+        key: ${{ matrix.python-version }}3
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - name: create file in subdir
+      if: hashFiles('cachetest/out.txt') == ''
+      run: |
+        echo "Creating the cachetest dir"
+        mkdir cachetest
+        echo "out.txt: $BUILD_NUMBER" > cachetest/out.txt
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         python -m pip install pytest pytest-testmon
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        cat cachetest/out.txt
     - name: Test with pytest
       run: |
         ls -al
