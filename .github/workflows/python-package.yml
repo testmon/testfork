@@ -17,7 +17,6 @@ jobs:
       fail-fast: false
       matrix:
         python-version: ["3.9", "3.10"]
-
     steps:
     - uses: actions/cache@v2
       name: Cache nonexistent for debugging
@@ -25,7 +24,17 @@ jobs:
         path: nonexistent
         key: ${{ matrix.python-version }}
     - uses: actions/cache@v2
-      name: Cache testmondata
+      name: Cache testmondata1
+      with:
+        path: ~/.testmondata
+        key: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      name: Cache testmondata2
+      with:
+        path: /home/runner/work/testfork/testfork/.testmondata
+        key: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      name: Cache testmondata3
       with:
         path: .testmondata
         key: ${{ matrix.python-version }}

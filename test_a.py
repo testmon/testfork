@@ -3,3 +3,6 @@ def test1():
 
 def test2():
     assert True
+
+def test3():
+    assert True
