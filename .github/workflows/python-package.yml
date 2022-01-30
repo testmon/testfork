@@ -21,11 +21,10 @@ jobs:
     - uses: actions/cache@v2
       name: Cache cachetest dir
       with:
-        path: cachetest
-        key: ${{ matrix.python-version }}-cachetestdir
+        path: out.txt
+        key: ${{ matrix.python-version }}-outtxt
     - name: create file in subdir
       run: |
-        echo "Listing and creating the cachetest dir"
-        cat "cachetest/out.txt"
-        mkdir -p cachetest
-        echo "in out.txt: $GITHUB_JOB" > cachetest/out.txt
+        echo "print"
+        cat "out.txt"
+        echo "in out.txt: $GITHUB_JOB" > out.txt
