@@ -19,6 +19,10 @@ jobs:
         python-version: ["3.9", "3.10"]
 
     steps:
+    - uses: actions/cache@v2
+      with:
+        path: .testmondata
+        key: ${{ runner.os }}
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
