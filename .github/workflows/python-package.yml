@@ -25,6 +25,6 @@ jobs:
         key: ${{ matrix.python-version }}-outtxt
     - name: create file in subdir
       run: |
-        echo "print"
-        cat "out.txt"
+        ls -al
+        if [ -f out.txt ]; then cat out.txt; fi
         echo "in out.txt: $GITHUB_JOB" > out.txt
