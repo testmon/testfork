@@ -27,5 +27,5 @@ jobs:
       run: |
         echo "Listing and creating the cachetest dir"
         cat "cachetest/out.txt"
-        mkdir cachetest
-        echo "in out.txt: $BUILD_NUMBER" > cachetest/out.txt
+        mkdir -p cachetest
+        echo "in out.txt: $GITHUB_JOB" > cachetest/out.txt
