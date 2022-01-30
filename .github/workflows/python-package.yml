@@ -16,15 +16,29 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9"]
+        python-version: ["3.9", "3.10"]
+
     steps:
-    - uses: actions/cache@v2
-      name: Cache cachetest dir
-      with:
-        path: .out.txt
-        key: ${{ matrix.python-version }}-dotouttxt
-    - name: create file in subdir
-      run: |
-        ls -al
-        if [ -f .out.txt ]; then cat .out.txt; fi
-        echo "in out.txt: $GITHUB_RUN_ID $GITHUB_RUN_NUMBER" > .out.txt
+      - uses: actions/cache@v2
+        with:
+          path: .testmondata
+          key: testmon-${{ matrix.python-version }}-${{ env.GITHUB_RUN_ID }}-${{ env.GITHUB_RUN_NUMBER }}
+          restore-key: testmon-${{ matrix.python-version }}
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: ls -al 1
+        run: ls -al
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest pytest-testmon
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Test with pytest
+        run: |
+          pytest --testmon -vv
+      - name: ls -al 2
+        run: ls -al
+
