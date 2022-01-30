@@ -19,11 +19,11 @@ jobs:
         python-version: ["3.9", "3.10"]
 
     steps:
-      - uses: actions/cache@v2
-        name: Cache nonexistent for debugging
-        with:
-          path: nonexistent
-          key: ${{ matrix.python-version }}
+    - uses: actions/cache@v2
+      name: Cache nonexistent for debugging
+      with:
+        path: nonexistent
+        key: ${{ matrix.python-version }}
     - uses: actions/cache@v2
       name: Cache testmondata
       with:
