@@ -19,10 +19,16 @@ jobs:
         python-version: ["3.9", "3.10"]
 
     steps:
+      - uses: actions/cache@v2
+        name: Cache nonexistent for debugging
+        with:
+          path: nonexistent
+          key: ${{ matrix.python-version }}
     - uses: actions/cache@v2
+      name: Cache testmondata
       with:
         path: .testmondata
-        key: ${{ runner.os }}
+        key: ${{ matrix.python-version }}
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
