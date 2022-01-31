@@ -7,6 +7,7 @@ authors = ["Tibor Arpas <tibor.arpas@infinit.sk>"]
 [tool.poetry.dependencies]
 python = "^3.10"
 pytest = "^6.2.5"
+pytest-testmon = "^1.2.2"
 
 [tool.poetry.dev-dependencies]
 
