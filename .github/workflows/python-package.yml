@@ -23,8 +23,8 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: .testmondata
-          key: testmon-${{ matrix.python-version }}-${{ github.run_id }}.${{ github.run_number }}
-          restore-keys: testmon-${{ matrix.python-version }}
+          key: testmon*${{ matrix.python-version }}-${{ github.run_id }}.${{ github.run_number }}
+          restore-keys: testmon*${{ matrix.python-version }}
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
