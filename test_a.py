@@ -5,4 +5,4 @@ def test2():
     assert True
 
 def test3():
-    assert 1==1
+    assert 3==3
