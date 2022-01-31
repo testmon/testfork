@@ -29,8 +29,6 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: ls -al 1
-        run: ls -al
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -38,7 +36,5 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Test with pytest
         run: |
-          pytest --testmon -vv
-      - name: ls -al 2
-        run: ls -al
+          pytest --testmon -v
 
