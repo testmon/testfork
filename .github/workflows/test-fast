@@ -1,0 +1,21 @@
+name: test-fast
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  play: # for experimenting with GH actions
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: GIT info
+        run: |
+          echo "BRANCH: ${{ github.ref }}"
+          echo "HEAD: `git rev-parse HEAD`"
+          echo "PARENT: `git rev-parse HEAD~1`"
