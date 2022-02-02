@@ -7,3 +7,4 @@ def test2():
 def test3():
     assert 3==3
     assert True
+    assert 5
